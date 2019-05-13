@@ -1,0 +1,31 @@
+{
+  "name": "pro-mern-stack-2-api",
+  "version": "1.0.0",
+  "description": "Pro MERN Stack (2nd Edition) API",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e js,graphql -w . -w .env server.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasansr/pro-mern-stack-2.git"
+  },
+  "author": "vasan.promern@gmail.com",
+  "license": "ISC",
+  "homepage": "https://github.com/vasansr/pro-mern-stack-2",
+  "dependencies": {
+    "apollo-server-express": "^2.3.1",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "graphql": "^0.13.2",
+    "mongodb": "^3.1.10",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}

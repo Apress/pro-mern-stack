@@ -1,0 +1,67 @@
+{
+  "name": "pro-mern-stack-2-ui",
+  "version": "1.0.0",
+  "description": "Pro MERN Stack (2nd Edition) - UI",
+  "main": "index.js",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
+  "scripts": {
+    "#start": "UI server. HMR is enabled in dev mode.",
+    "start": "node dist/server.js",
+    "#lint": "Runs ESLint on all relevant files",
+    "lint": "eslint server src browser --ext js,jsx",
+    "#compile": "Generates JS bundles for production. Use with start.",
+    "compile": "webpack --mode production",
+    "#watch-server-hmr": "Recompile server HMR bundle on changes.",
+    "watch-server-hmr": "webpack -w --config webpack.serverHMR.js",
+    "#dev-all": "Dev mode: watch for server changes and start UI server",
+    "dev-all": "rm dist/* && npm run watch-server-hmr & sleep 5 && npm start",
+    "heroku-postbuild": "npm run compile && ln -sf ../node_modules/bootstrap/dist public/bootstrap"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasansr/pro-mern-stack-2.git"
+  },
+  "author": "vasan.promern@gmail.com",
+  "license": "ISC",
+  "homepage": "https://github.com/vasansr/pro-mern-stack-2",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^3.4.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "http-proxy-middleware": "^0.19.1",
+    "isomorphic-fetch": "^2.2.1",
+    "nodemon": "^1.18.9",
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-bootstrap": "^0.32.4",
+    "react-dom": "^16.7.0",
+    "react-router-bootstrap": "^0.24.4",
+    "react-router-dom": "^4.3.1",
+    "react-select": "^2.2.0",
+    "serialize-javascript": "^1.6.1",
+    "source-map-support": "^0.5.9",
+    "url-search-params": "^1.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "eslint": "^5.12.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.12.3",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-middleware": "^3.5.0",
+    "webpack-hot-middleware": "^2.24.3",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

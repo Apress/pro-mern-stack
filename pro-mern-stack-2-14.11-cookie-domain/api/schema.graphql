@@ -1,0 +1,90 @@
+scalar GraphQLDate
+
+enum StatusType {
+  New
+  Assigned
+  Fixed
+  Closed
+}
+
+type Issue {
+  _id: ID!
+  id: Int!
+  title: String!
+  status: StatusType!
+  owner: String
+  effort: Int
+  created: GraphQLDate!
+  due: GraphQLDate
+  description: String
+}
+
+type IssueCounts {
+  owner: String!
+  New: Int
+  Assigned: Int
+  Fixed: Int
+  Closed: Int
+}
+
+type IssueListWithPages {
+  issues: [Issue!]!
+  pages: Int
+}
+
+type User {
+  signedIn: Boolean!
+  givenName: String
+  name: String
+  email: String
+}
+
+"Toned down Issue, used as inputs, without server generated values."
+input IssueInputs {
+  title: String!
+  "Optional, if not supplied, will be set to 'New'"
+  status: StatusType = New
+  owner: String
+  effort: Int
+  due: GraphQLDate
+  description: String
+}
+
+"""Inputs for issueUpdate: all are optional. Whichever is specified will
+be set to the given value, undefined fields will remain unmodified."""
+input IssueUpdateInputs {
+  title: String
+  status: StatusType
+  owner: String
+  effort: Int
+  due: GraphQLDate
+  description: String
+}
+
+##### Top level declarations
+
+type Query {
+  about: String!
+  user: User!
+  issueList(
+    status: StatusType
+    effortMin: Int
+    effortMax: Int
+    search: String
+    page: Int = 1
+  ): IssueListWithPages
+  issue(id: Int!): Issue!
+  issueCounts(
+    status: StatusType
+    effortMin: Int
+    effortMax: Int
+  ): [IssueCounts!]!
+}
+
+type Mutation {
+  setAboutMessage(message: String!): String
+  issueAdd(issue: IssueInputs!): Issue!
+  issueUpdate(id: Int!, changes: IssueUpdateInputs!): Issue!
+  issueDelete(id: Int!): Boolean!
+  issueRestore(id: Int!): Boolean!
+}
